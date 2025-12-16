@@ -7,13 +7,9 @@
     />
   <br>
   RIPLEY<br>
-  "Are you actually trying, or just giving me surface-level bullshit?"
-  <br>
+  <h3 align="center">"Are you actually trying, or just giving me surface-level bullshit?"</h3>
 </h1>
 
-<h4 align="center">
- **Ripley** is a lightweight Go daemon for **AI liveness and effort testing**, inspired by Ellen Ripley from *Alien*. Just as Ripley follows procedure and exposes systems that claim they're fine but aren't, this daemon monitors Claude Code AI (Sonnet 4.5) with regular benchmarks and Ripley-style feedback.
-</h4>
 
 <p align="center">
     <a href="LICENSE" target="_blank">
@@ -29,7 +25,12 @@ If you have any questions or need more info, then please <a href="https://discor
 
 ---
 
+
+## What is Ripley?
+**Ripley** is a lightweight Go daemon for **AI liveness and effort testing**, inspired by Ellen Ripley from *Alien*. Just as Ripley follows procedure and exposes systems that claim they're fine but aren't, this daemon monitors Claude Code AI (Sonnet 4.5) with regular benchmarks and Ripley-style feedback.
+
 > Current version only supports Sonnet 4.5, but Opus is on the way.
+
 
 ## Features
 
