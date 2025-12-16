@@ -2,21 +2,33 @@
   <img src="./assets/ripley.png" width="400" height="400">
 </p>
 
-# Ripley Daemon
+# Ripley
 
-> "Are you actually trying, or just giving me surface-level output?"
+> "Are you actually trying, or just giving me surface-level bullshit?" <br> –Ripley
 
 **Ripley** is a lightweight Go daemon for **AI liveness and effort testing**, inspired by Ellen Ripley from *Alien*. Just as Ripley follows procedure and exposes systems that claim they're fine but aren't, this daemon monitors Claude Code AI (Sonnet 4.5) with regular benchmarks and Ripley-style feedback.
 
+> Current version only supports Sonnet 4.5, but Opus on the way.
+
 ## Features
 
-- **Automated Benchmarking**: Runs simple, deterministic tests against Claude CLI at regular intervals
-- **Effort Categorization**: Classifies responses as "good", "medium", or "poor" based on token usage, duration, and correctness
-- **Ripley-Style Quotes**: Provides feedback with Ripley's characteristic calm, procedural, and no-nonsense tone
-- **SQLite Logging**: Persists all benchmark results for historical analysis
-- **Rolling Statistics**: Tracks performance trends over the last N runs
-- **Configurable**: YAML-based configuration for intervals, thresholds, and more
-- **Extensible**: Easy to add new benchmarks or integrate with other AI models
+- **Automated Benchmarking**:  
+  Runs simple, deterministic tests against Claude CLI at regular intervals
+- **Benchmarks are Token Limited**:  
+  Ripley cares deeply about your tokens, and does her utmost to avoid wasting even a single token. Bench mark will not burn more than a token limit (default is 200 tokens, but you can set that in config.yaml - see below)
+- **Effort Categorization**:  
+  Classifies test results as "good", "medium", or "poor" based on token usage, duration, and correctness
+- **Ripley-Style Quotes**:  
+  Provides feedback on test results, with Ripley's characteristic calm, procedural, and no-nonsense tone
+- **SQLite Logging**:  
+  Persists all benchmark results for historical analysis
+- **Rolling Statistics**:  
+  Tracks performance trends over the last N runs
+- **Configurable**:  
+  YAML-based configuration for intervals, thresholds, and more
+- **Extensible**:  
+  Easy to add new benchmarks or integrate with other AI models
+
 
 ## Prerequisites
 
@@ -61,7 +73,7 @@ monitoring:
   warning_threshold: 0.7       # Alert if pass rate < 70%
 ```
 
-If no `config.yaml` is found, the daemon uses sensible defaults.
+> If no `config.yaml` is found, the daemon uses sensible defaults - which are??? TODO add details.
 
 ## Usage
 
@@ -102,6 +114,7 @@ make test
 # Run tests with coverage
 make test-coverage
 ```
+---
 
 ## Example Output
 
@@ -209,7 +222,6 @@ make help           # Show all targets
 ```
 
 ## Author
-
 **CryptoPatrick**
 
 ## License
@@ -231,4 +243,4 @@ MIT
 
 ## Acknowledgments
 
-Inspired by Ellen Ripley from *Alien* - the only one actually doing the work. She's calm, procedural, and rule-following. Ripley survives because she follows the checklist, exposing systems and crews that say they're fine but aren't.
+Inspired by Ellen Ripley from *Alien* - the only one actually doing any work.🔫
