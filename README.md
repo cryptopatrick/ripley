@@ -1,14 +1,35 @@
+<h1 align="center">
+  <br>
+    <img 
+      src="https://github.com/cryptopatrick/factory/blob/master/img/100days/ripley.png" 
+      alt="Title" 
+      width="200"
+    />
+  <br>
+  RIPLEY<br>
+  "Are you actually trying, or just giving me surface-level bullshit?"
+  <br>
+</h1>
+
+<h4 align="center">
+ **Ripley** is a lightweight Go daemon for **AI liveness and effort testing**, inspired by Ellen Ripley from *Alien*. Just as Ripley follows procedure and exposes systems that claim they're fine but aren't, this daemon monitors Claude Code AI (Sonnet 4.5) with regular benchmarks and Ripley-style feedback.
+</h4>
+
 <p align="center">
-  <img src="./assets/ripley.png" width="400" height="400">
+    <a href="LICENSE" target="_blank">
+    <img src="https://img.shields.io/github/license/sulu/sulu.svg" alt="GitHub license"/>
+  </a>
 </p>
 
-# Ripley
+<hr>
 
-> "Are you actually trying, or just giving me surface-level bullshit?" <br> –Ripley
+<b>Authors's bio:</b> 👋😀 Hi, I'm CryptoPatrick! I'm currently enrolled as an 
+Undergraduate student in Mathematics, at Chalmers & the University of Gothenburg, Sweden. <br>
+If you have any questions or need more info, then please <a href="https://discord.gg/T8EWmJZpCB">join my Discord Channel: AiMath</a>
 
-**Ripley** is a lightweight Go daemon for **AI liveness and effort testing**, inspired by Ellen Ripley from *Alien*. Just as Ripley follows procedure and exposes systems that claim they're fine but aren't, this daemon monitors Claude Code AI (Sonnet 4.5) with regular benchmarks and Ripley-style feedback.
+---
 
-> Current version only supports Sonnet 4.5, but Opus on the way.
+> Current version only supports Sonnet 4.5, but Opus is on the way.
 
 ## Features
 
