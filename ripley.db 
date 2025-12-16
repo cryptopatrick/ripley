@@ -1,0 +1,107 @@
+package storage
+
+import (
+    "database/sql"
+    "fmt"
+    "time"
+
+    _ "github.com/mattn/go-sqlite3"
+)
+
+type Storage struct {
+    db *sql.DB
+}
+
+type BenchmarkRecord struct {
+    Name       string
+    Passed     bool
+    TokensUsed int
+    Duration   time.Duration
+    Quote      string
+    Output     string
+    Timestamp  time.Time
+}
+
+// Initialize SQLite DB and table
+func New(path string) (*Storage, error) {
+    db, err := sql.Open("sqlite3", path)
+    if err != nil {
+        return nil, err
+    }
+
+    query := `
+    CREATE TABLE IF NOT EXISTS benchmark_results (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        passed BOOLEAN,
+        tokens_used INTEGER,
+        duration REAL,
+        quote TEXT,
+        output TEXT,
+        timestamp DATETIME
+    );
+    `
+    _, err = db.Exec(query)
+    if err != nil {
+        return nil, err
+    }
+
+    return &Storage{db: db}, nil
+}
+
+// Insert a benchmark record
+func (s *Storage) InsertRecord(r BenchmarkRecord) error {
+    _, err := s.db.Exec(
+        `INSERT INTO benchmark_results (name, passed, tokens_used, duration, quote, output, timestamp) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        r.Name, r.Passed, r.TokensUsed, r.Duration.Seconds(), r.Quote, r.Output, r.Timestamp,
+    )
+    return err
+}
+
+// Fetch rolling statistics for the last N entries per benchmark
+func (s *Storage) GetRollingStats(name string, lastN int) (avgTokens float64, avgDuration float64, passRate float64, err error) {
+    query := fmt.Sprintf(`
+        SELECT tokens_used, duration, passed
+        FROM benchmark_results
+        WHERE name = ?
+        ORDER BY timestamp DESC
+        LIMIT %d
+    `, lastN)
+
+    rows, err := s.db.Query(query, name)
+    if err != nil {
+        return
+    }
+    defer rows.Close()
+
+    var totalTokens int
+    var totalDuration float64
+    var totalPass int
+    var count int
+
+    for rows.Next() {
+        var tokens int
+        var duration float64
+        var passed bool
+        err = rows.Scan(&tokens, &duration, &passed)
+        if err != nil {
+            return
+        }
+        totalTokens += tokens
+        totalDuration += duration
+        if passed {
+            totalPass++
+        }
+        count++
+    }
+
+    if count == 0 {
+        return 0, 0, 0, nil
+    }
+
+    avgTokens = float64(totalTokens) / float64(count)
+    avgDuration = totalDuration / float64(count)
+    passRate = float64(totalPass) / float64(count)
+
+    return
+}

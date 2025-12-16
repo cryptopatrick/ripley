@@ -1,0 +1,58 @@
+# Binaries
+ripleyd
+ripleyctl
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go workspace file
+go.work
+
+# Database files
+ripley.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files (use config.yaml.example instead)
+config.yaml
+.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Temporary files
+_wb/
+tmp/
+temp/
+
+# Build artifacts
+dist/
+build/
+
+
+# Folders
+target/
+_docs-vibe/
+_wb/
+_dev/
+
+# Files
+.claude
+.DS_Store
+CLAUDE.md
+claude.md
+Cargo.lock

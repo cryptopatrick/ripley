@@ -1,0 +1,28 @@
+# Ripley Daemon Configuration Example
+# Copy this to config.yaml and customize as needed
+
+# Daemon settings
+daemon:
+  # How often to run benchmarks (valid units: s, m, h)
+  interval: "30m"
+
+  # Path to SQLite database file
+  db_path: "./ripley.db"
+
+# Claude AI settings
+claude:
+  # Model to use (e.g., "Sonnet", "Opus", "Haiku")
+  model: "Sonnet"
+
+  # Default maximum tokens for benchmarks
+  # Individual benchmarks can override this
+  default_max_tokens: 200
+
+# Monitoring and alerting settings
+monitoring:
+  # Number of recent runs to use for rolling statistics
+  rolling_window: 10
+
+  # Warning threshold for pass rate (0.0 to 1.0)
+  # Alert if pass rate falls below this value
+  warning_threshold: 0.7
